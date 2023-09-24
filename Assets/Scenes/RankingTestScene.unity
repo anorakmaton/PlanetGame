@@ -384,6 +384,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ScoreText: {fileID: 1983432956}
   score: 0
+  BlackHoleCount: 0
   scoreList: 0100000003000000060000000a0000000f000000150000001c000000240000002d0000003700000042000000
 --- !u!1 &351495496
 GameObject:
@@ -1119,8 +1120,11 @@ MonoBehaviour:
   GameOverSE: {fileID: 8300000, guid: ee1373242b28357458d94b40def47e44, type: 3}
   GameOverBGM: {fileID: 8300000, guid: 922845fba5e6f9141a416e279c9ede7c, type: 3}
   GameOverText: {fileID: 651139240}
-  toggle: {fileID: 1740100592}
+  toggleBGM: {fileID: 0}
   TitleButton: {fileID: 353966686}
+  RetryButton: {fileID: 0}
+  playAreaWidth: 6
+  playAreaHeight: 5.5
 --- !u!4 &661629653
 Transform:
   m_ObjectHideFlags: 0
