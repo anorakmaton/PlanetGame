@@ -7,6 +7,7 @@ public class ScoreManager : MonoBehaviour
 {
     public GameObject ScoreText;
     public int score = 0;
+    public int BlackHoleCount = 0;
     public int[] scoreList = new int[11] { 1, 3, 6, 10, 15, 21, 28, 36, 45, 55, 66 };
     public static ScoreManager instance; // インスタンスの定義
 

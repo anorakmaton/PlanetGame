@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Mono.Cecil.Cil;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
@@ -94,7 +95,7 @@ public class GameManager : MonoBehaviour
         //TitleButton.SetActive(true);
         //Retryボタンを表示
         RetryButton.SetActive(true);
-        naichilab.RankingLoader.Instance.SendScoreAndShowRanking (ScoreManager.instance.score);
+        naichilab.RankingLoader.Instance.SendScoreAndShowRanking (ScoreManager.instance.score, ScoreManager.instance.BlackHoleCount);
     }
 
     public void OnToggledSound()

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class CircleManager : MonoBehaviour
 {
@@ -61,7 +62,7 @@ public class CircleManager : MonoBehaviour
         nextCircleSize = Random.Range(1, 6);
         //NextBoxに表示する
         Nextcircle = CircleController.Init(nextCircleSize, new Vector3(5f, 1.85f, 0), false, true);
-        
+        //Nextcircle = CircleController.Init(10, new Vector3(5f, 1.85f, 0), false, true);
         
         // 子オブジェクトにする
         //circle.transform.parent = transform;
@@ -94,6 +95,11 @@ public class CircleManager : MonoBehaviour
             
             //スコアを加算する
             ScoreManager.instance.AddScore(size);
+
+            if (size == 10)
+            {
+                ScoreManager.instance.BlackHoleCount++;
+            }
         }
         
     }   

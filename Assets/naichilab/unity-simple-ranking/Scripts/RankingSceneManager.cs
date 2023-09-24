@@ -12,7 +12,7 @@ namespace naichilab
         private const string OBJECT_ID = "objectId";
         private const string COLUMN_SCORE = "score";
         private const string COLUMN_NAME = "name";
-
+        private const string COLUMN_BLACKHOLE = "blackhole";
 
         [SerializeField] Text captionLabel;
         [SerializeField] Text scoreLabel;
@@ -46,7 +46,7 @@ namespace naichilab
 
         private RankingInfo _board;
         private IScore _lastScore;
-
+        private int _blackHoleCount;
         private NCMBObject _ncmbRecord;
 
         /// <summary>
@@ -71,7 +71,7 @@ namespace naichilab
             sendScoreButton.interactable = false;
             _board = RankingLoader.Instance.CurrentRanking;
             _lastScore = RankingLoader.Instance.LastScore;
-
+            _blackHoleCount = RankingLoader.Instance.BlackHoleCount;
             Debug.Log(BoardIdPlayerPrefsKey + "=" + PlayerPrefs.GetString(BoardIdPlayerPrefsKey, null));
 
             StartCoroutine(GetHighScoreAndRankingBoard());
@@ -155,6 +155,7 @@ namespace naichilab
 
             _ncmbRecord[COLUMN_NAME] = InputtedNameForSave;
             _ncmbRecord[COLUMN_SCORE] = _lastScore.Value;
+            _ncmbRecord[COLUMN_BLACKHOLE] = _blackHoleCount;
             NCMBException errorResult = null;
 
             yield return _ncmbRecord.YieldableSaveAsync(error => errorResult = error);
