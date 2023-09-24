@@ -79,7 +79,7 @@ namespace naichilab
         /// </summary>
         /// <param name="score"></param>
         /// <param name="boardId"></param>
-        public void SendScoreAndShowRanking(double score, int _blackHoleCount, int boardId = 1)
+        public void SendScoreAndShowRanking(double score, int _blackHoleCount, int boardId = 0)
         {
             var board = RankingBoards.GetRankingInfo(boardId);
             var sc = new NumberScore(score, board.CustomFormat);
