@@ -518,6 +518,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ScoreText: {fileID: 1983432956}
   score: 0
+  BlackHoleCount: 0
   scoreList: 0100000003000000060000000a0000000f000000150000001c000000240000002d0000003700000042000000
 --- !u!1 &351495496
 GameObject:
