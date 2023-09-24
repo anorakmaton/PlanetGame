@@ -10,7 +10,7 @@ public class CircleController : MonoBehaviour
     float right;
     float top;
     private readonly float offset = 0.01f;
-    private float scale;
+    public float scale;
     public bool isDropped = false;
     public bool isNext = false;
     public GameObject Mask;

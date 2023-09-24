@@ -60,6 +60,7 @@ public class CircleManager : MonoBehaviour
             mousePosition  = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             mousePosition.z = 0;
             mousePosition.y = GameManager.instance.playAreaHeight;
+            mousePosition.x = Mathf.Clamp(mousePosition.x, GameManager.instance.playAreaWidth / -2 + (Nextcircle.scale / 2), GameManager.instance.playAreaWidth / 2 - (Nextcircle.scale / 2));
             Nextcircle.gameObject.transform.position = mousePosition;
             circle = Nextcircle;
         }
