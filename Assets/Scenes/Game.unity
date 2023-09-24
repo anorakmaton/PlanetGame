@@ -1403,7 +1403,7 @@ MonoBehaviour:
   toggleBGM: {fileID: 1740100592}
   TitleButton: {fileID: 353966686}
   RetryButton: {fileID: 621159422}
-  playAreaWidth: 7
+  playAreaWidth: 6
   playAreaHeight: 4.5
 --- !u!4 &661629653
 Transform:
