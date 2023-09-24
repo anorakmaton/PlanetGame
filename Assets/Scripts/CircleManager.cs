@@ -21,6 +21,7 @@ public class CircleManager : MonoBehaviour
     public bool isGameOver = false;
     public static CircleManager instance; // インスタンスの定義
     private int EnableCircleLayer_num = 7;
+    private Vector3 mousePosition;
     void Awake()
     {
         // シングルトンの呪文
@@ -56,6 +57,10 @@ public class CircleManager : MonoBehaviour
         if(Nextcircle != null)
         {
             Nextcircle.isNext = false;
+            mousePosition  = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            mousePosition.z = 0;
+            mousePosition.y = GameManager.instance.playAreaHeight;
+            Nextcircle.gameObject.transform.position = mousePosition;
             circle = Nextcircle;
         }
         //1-5からランダムに数字を選ぶ
