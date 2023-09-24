@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: RankingInfo_test
   m_EditorClassIdentifier: 
   BoardName: "\u30CF\u30A4\u30B9\u30B3\u30A2\u30E9\u30F3\u30AD\u30F3\u30B0"
-  ClassName: HiScore_test
+  ClassName: HiScore_1
   Type: 0
   Order: 1
   CustomFormat: 

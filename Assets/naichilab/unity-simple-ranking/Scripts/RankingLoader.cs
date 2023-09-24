@@ -26,6 +26,10 @@ namespace naichilab
         /// </summary>
         [NonSerialized] public IScore LastScore;
 
+        /// <summary>
+        /// 生成したブラックホールの数
+        /// </summary>
+        [NonSerialized] public int BlackHoleCount = 0;
         #region singleton
 
         private static RankingLoader instance;
@@ -62,26 +66,27 @@ namespace naichilab
         /// </summary>
         /// <param name="time"></param>
         /// <param name="boardId"></param>
+        /*
         public void SendScoreAndShowRanking(TimeSpan time, int boardId = 0)
         {
             var board = RankingBoards.GetRankingInfo(boardId);
             var sc = new TimeScore(time, board.CustomFormat);
             SendScoreAndShowRanking(sc, board);
         }
-
+        */
         /// <summary>
         /// 数値型スコアの送信とランキング表示を行います
         /// </summary>
         /// <param name="score"></param>
         /// <param name="boardId"></param>
-        public void SendScoreAndShowRanking(double score, int boardId = 0)
+        public void SendScoreAndShowRanking(double score, int _blackHoleCount, int boardId = 0)
         {
             var board = RankingBoards.GetRankingInfo(boardId);
             var sc = new NumberScore(score, board.CustomFormat);
-            SendScoreAndShowRanking(sc, board);
+            SendScoreAndShowRanking(sc, _blackHoleCount, board);
         }
 
-        private void SendScoreAndShowRanking(IScore score, RankingInfo board)
+        private void SendScoreAndShowRanking(IScore score, int _blackHoleCount, RankingInfo board)
         {
             if (board.Type != score.Type)
             {
@@ -90,6 +95,7 @@ namespace naichilab
 
             CurrentRanking = board;
             LastScore = score;
+            BlackHoleCount = _blackHoleCount;
             SceneManager.LoadScene("Ranking", LoadSceneMode.Additive);
         }
     }
