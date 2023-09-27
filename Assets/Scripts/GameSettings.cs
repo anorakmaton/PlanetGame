@@ -7,6 +7,8 @@ public class GameSettings : MonoBehaviour
     //toggleBGMの状態を保持する変数
     public bool isPlayingBGM = true;
     public static GameSettings instance; // インスタンスの定義
+    public float BGMVolume = 0.3f;
+    public float SEVolume = 0.3f;
     void Awake()
     {
         // シングルトンの呪文

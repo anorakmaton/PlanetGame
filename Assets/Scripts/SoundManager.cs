@@ -1,5 +1,5 @@
 using UnityEngine;
-
+using UnityEngine.UI;
 public class SoundManager : MonoBehaviour
 {
 
@@ -7,6 +7,12 @@ public class SoundManager : MonoBehaviour
     AudioSource bgmAudioSource;
     [SerializeField]
     AudioSource seAudioSource;
+    [SerializeField]
+    Slider BGMVolumeSlider;
+    [SerializeField]
+    Slider SEVolumeSlider;
+    public float bgmVolume;
+    public float seVolume;
     public static SoundManager instance; // インスタンスの定義
     public float BgmVolume
     {
@@ -47,6 +53,18 @@ public class SoundManager : MonoBehaviour
         }
     }
 
+    void Start()
+    {
+        //BGMの音量をGameSettingsから取得
+        bgmVolume = GameSettings.instance.BGMVolume;
+        bgmAudioSource.volume = bgmVolume;
+        BGMVolumeSlider.value = bgmVolume;
+        //SEの音量をGameSettingsから取得
+        seVolume = GameSettings.instance.SEVolume;
+        seAudioSource.volume = seVolume;
+        SEVolumeSlider.value = seVolume;
+    }
+
     GameObject CheckOtherSoundManager()
     {
         return GameObject.FindGameObjectWithTag("SoundManager");
@@ -79,14 +97,18 @@ public class SoundManager : MonoBehaviour
         seAudioSource.PlayOneShot(clip);
     }
 
-    public void SetBgmVolume(float volume)
+    public void SetBgmVolume()
     {
-        bgmAudioSource.volume = volume;
+        bgmVolume = BGMVolumeSlider.value;
+        bgmAudioSource.volume = bgmVolume;
+        GameSettings.instance.BGMVolume = bgmVolume;
     }
 
     public void SetSeVolume(float volume)
     {
-        seAudioSource.volume = volume;
+        seVolume = SEVolumeSlider.value;
+        seAudioSource.volume = seVolume;
+        GameSettings.instance.SEVolume = seVolume;
     }
 
 }
