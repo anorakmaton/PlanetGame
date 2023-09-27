@@ -104,7 +104,7 @@ public class SoundManager : MonoBehaviour
         GameSettings.instance.BGMVolume = bgmVolume;
     }
 
-    public void SetSeVolume(float volume)
+    public void SetSeVolume()
     {
         seVolume = SEVolumeSlider.value;
         seAudioSource.volume = seVolume;

@@ -80,7 +80,7 @@ public class GameManager : MonoBehaviour
         //BGMをストップ
         soundManager.StopBgm();
         //サウンドを再生
-        soundManager.SetSeVolume(0.2f);
+        //soundManager.SetSeVolume(0.2f);
         soundManager.PlaySe(GameOverSE);
         soundManager.PlayBgm(GameOverBGM);
         
