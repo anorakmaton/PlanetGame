@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 public class SoundManager : MonoBehaviour
@@ -58,11 +59,11 @@ public class SoundManager : MonoBehaviour
         //BGMの音量をGameSettingsから取得
         bgmVolume = GameSettings.instance.BGMVolume;
         bgmAudioSource.volume = bgmVolume;
-        BGMVolumeSlider.value = bgmVolume;
+        BGMVolumeSlider.gameObject.GetComponent<VolumeSlider>().SetBGMValue(bgmVolume);
         //SEの音量をGameSettingsから取得
         seVolume = GameSettings.instance.SEVolume;
         seAudioSource.volume = seVolume;
-        SEVolumeSlider.value = seVolume;
+        SEVolumeSlider.gameObject.GetComponent<VolumeSlider>().SetSEValue(seVolume);
     }
 
     GameObject CheckOtherSoundManager()
@@ -74,7 +75,7 @@ public class SoundManager : MonoBehaviour
     {
         bgmAudioSource.clip = clip;
 
-        if(clip == null)
+        if (clip == null)
         {
             return;
         }
@@ -89,7 +90,7 @@ public class SoundManager : MonoBehaviour
 
     public void PlaySe(AudioClip clip)
     {
-        if(clip == null)
+        if (clip == null)
         {
             return;
         }
@@ -97,18 +98,16 @@ public class SoundManager : MonoBehaviour
         seAudioSource.PlayOneShot(clip);
     }
 
-    public void SetBgmVolume()
+    public void SetBgmVolume(float bgmvolume)
     {
-        bgmVolume = BGMVolumeSlider.value;
-        bgmAudioSource.volume = bgmVolume;
-        GameSettings.instance.BGMVolume = bgmVolume;
+        bgmAudioSource.volume = bgmvolume;
+        GameSettings.instance.BGMVolume = bgmvolume;
     }
 
-    public void SetSeVolume()
+    public void SetSeVolume(float sevolume)
     {
-        seVolume = SEVolumeSlider.value;
-        seAudioSource.volume = seVolume;
-        GameSettings.instance.SEVolume = seVolume;
+        seAudioSource.volume = sevolume;
+        GameSettings.instance.SEVolume = sevolume;
     }
 
 }

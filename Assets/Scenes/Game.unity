@@ -650,6 +650,7 @@ GameObject:
   m_Component:
   - component: {fileID: 349445309}
   - component: {fileID: 349445310}
+  - component: {fileID: 349445311}
   m_Layer: 5
   m_Name: BGMSlider
   m_TagString: Untagged
@@ -732,10 +733,10 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 351495497}
-        m_TargetAssemblyTypeName: SoundManager, Assembly-CSharp
-        m_MethodName: SetBgmVolume
-        m_Mode: 1
+      - m_Target: {fileID: 349445311}
+        m_TargetAssemblyTypeName: VolumeSlider, Assembly-CSharp
+        m_MethodName: OnBgmSliderChanged
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -744,6 +745,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &349445311
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 349445308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 680765e22ba8b9f428832b713e233be4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &351495496
 GameObject:
   m_ObjectHideFlags: 0
@@ -1440,6 +1453,7 @@ GameObject:
   m_Component:
   - component: {fileID: 593432177}
   - component: {fileID: 593432178}
+  - component: {fileID: 593432179}
   m_Layer: 5
   m_Name: SESlider
   m_TagString: Untagged
@@ -1522,10 +1536,10 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 351495497}
-        m_TargetAssemblyTypeName: SoundManager, Assembly-CSharp
-        m_MethodName: SetSeVolume
-        m_Mode: 4
+      - m_Target: {fileID: 593432179}
+        m_TargetAssemblyTypeName: VolumeSlider, Assembly-CSharp
+        m_MethodName: OnSeSliderChanged
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1534,6 +1548,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &593432179
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 593432176}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 680765e22ba8b9f428832b713e233be4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &621159422
 GameObject:
   m_ObjectHideFlags: 0
@@ -4247,8 +4273,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPlayingBGM: 1
-  BGMVolume: 0.2
-  SEVolume: 0.5
+  BGMVolume: 0.3
+  SEVolume: 0.3
 --- !u!4 &1828203460
 Transform:
   m_ObjectHideFlags: 0
