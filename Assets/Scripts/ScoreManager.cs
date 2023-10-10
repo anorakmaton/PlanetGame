@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using unityroom.Api;
 
 public class ScoreManager : MonoBehaviour
 {
     public GameObject ScoreText;
+    public GameObject BestScoreText;
     public int score = 0;
     public int BlackHoleCount = 0;
     public int[] scoreList = new int[11] { 1, 3, 6, 10, 15, 21, 28, 36, 45, 55, 66 };
@@ -30,7 +32,7 @@ public class ScoreManager : MonoBehaviour
     void Start()
     {
         ScoreText.GetComponent<Text>().text = "0";
-        
+        BestScoreText.GetComponent<Text>().text = GameSettings.instance.BestScore.ToString();
     }
 
     // Update is called once per frame
@@ -43,5 +45,15 @@ public class ScoreManager : MonoBehaviour
     {
         score += scoreList[size - 1];
         ScoreText.GetComponent<Text>().text = score.ToString();
+        if(GameSettings.instance.BestScore < score)
+        {
+            GameSettings.instance.BestScore = score;
+        }
+       
+        //ランキングを送信
+        //総合ランキング
+        UnityroomApiClient.Instance.SendScore(1, this.score, ScoreboardWriteMode.HighScoreDesc);
+        //日別ランキング
+        UnityroomApiClient.Instance.SendScore(2, this.score, ScoreboardWriteMode.HighScoreDesc);
     }
 }
