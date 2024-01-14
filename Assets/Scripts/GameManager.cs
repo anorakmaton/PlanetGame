@@ -82,7 +82,8 @@ public class GameManager : MonoBehaviour
         //サウンドを再生
         soundManager.PlaySe(GameOverSE);
         soundManager.PlaySe(GameOverBGM);
-        
+        //DropLineを非表示
+        CircleManager.instance.DropLine.SetActive(false);
         //2秒後にリトライボタンを表示
         Invoke("ShowButton", 2.0f);
     }
