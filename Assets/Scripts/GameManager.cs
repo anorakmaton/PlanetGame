@@ -82,7 +82,7 @@ public class GameManager : MonoBehaviour
         soundManager.StopBgm();
         //サウンドを再生
         soundManager.PlaySe(GameOverSE);
-        soundManager.PlayBgm(GameOverBGM);
+        soundManager.PlaySe(GameOverBGM);
         
         //2秒後にリトライボタンを表示
         Invoke("ShowButton", 2.0f);
