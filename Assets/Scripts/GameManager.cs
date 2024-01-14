@@ -25,7 +25,6 @@ public class GameManager : MonoBehaviour
     public float playAreaHeight = 5.5f; //クリック可能な座標範囲
     public bool isDebugMode = false; //デバッグモードかどうか
     
-    
     public static GameManager instance; // インスタンスの定義
     void Awake()
     {
