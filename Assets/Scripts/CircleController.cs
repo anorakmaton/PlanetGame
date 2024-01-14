@@ -94,9 +94,13 @@ public class CircleController : MonoBehaviour
             mousePosition.z = 10f;
             // ワールド座標に変換
             Vector3 worldPosition = Camera.main.ScreenToWorldPoint(mousePosition);
-            // 座標をプレイエリア内に制限
-            worldPosition.x = Mathf.Clamp(worldPosition.x, left + (scale / 2) + offset, right - (scale / 2) -  offset);
-            worldPosition.y = Mathf.Clamp(worldPosition.y, top, top);
+            // デバッグモードの場合は制限なし
+            if (!GameManager.instance.isDebugMode)
+            {
+                // 座標をプレイエリア内に制限
+                worldPosition.x = Mathf.Clamp(worldPosition.x, left + (scale / 2) + offset, right - (scale / 2) - offset);
+                worldPosition.y = Mathf.Clamp(worldPosition.y, top, top);
+            }
             transform.position = worldPosition;
 
             // 左クリックされたら

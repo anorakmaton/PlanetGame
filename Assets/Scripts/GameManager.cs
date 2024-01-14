@@ -22,8 +22,9 @@ public class GameManager : MonoBehaviour
     public GameObject TitleButton;
     public GameObject RetryButton;
     public float playAreaWidth = 6f;
-    public float playAreaHeight = 5.5f;
-    //クリック可能な座標範囲
+    public float playAreaHeight = 5.5f; //クリック可能な座標範囲
+    public bool isDebugMode = false; //デバッグモードかどうか
+    
     
     public static GameManager instance; // インスタンスの定義
     void Awake()
