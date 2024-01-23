@@ -14,7 +14,7 @@ public class CircleManager : MonoBehaviour
     AudioClip DropSE;
     public GameObject DeadLine;
     public GameObject DropLine;
-    private int nextCircleSize = 1;
+    public int nextCircleSize = 1;
     //prefab格納する配列
     public GameObject[] circlePrefabArray;
     private CircleController circle;
@@ -132,6 +132,16 @@ public class CircleManager : MonoBehaviour
                 ScoreManager.instance.BlackHoleCount++;
             }
         }
+        else 
+        {
+            //サウンドを再生
+            soundManager.PlaySe(MergeSE);
+            circle1.GetComponent<CircleController>().DeleteCircle();
+            circle2.GetComponent<CircleController>().DeleteCircle();
+            //スコアを加算する
+            ScoreManager.instance.AddScore(size);
+        }
+        
         
     }   
 

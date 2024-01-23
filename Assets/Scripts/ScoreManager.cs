@@ -10,7 +10,7 @@ public class ScoreManager : MonoBehaviour
     public GameObject BestScoreText;
     public int score = 0;
     public int BlackHoleCount = 0;
-    public int[] scoreList = new int[11] { 1, 3, 6, 10, 15, 21, 28, 36, 45, 55, 66 };
+    public int[] scoreList = new int[12] { 1, 3, 6, 10, 15, 21, 28, 36, 45, 55, 66 , 78};
     public static ScoreManager instance; // インスタンスの定義
 
     private void Awake()
@@ -53,7 +53,10 @@ public class ScoreManager : MonoBehaviour
         //ランキングを送信
         //総合ランキング
         UnityroomApiClient.Instance.SendScore(1, this.score, ScoreboardWriteMode.HighScoreDesc);
-        //日別ランキング
-        UnityroomApiClient.Instance.SendScore(2, this.score, ScoreboardWriteMode.HighScoreDesc);
+        //ブラックホールランキング
+        if (this.BlackHoleCount > 0)
+        {
+            UnityroomApiClient.Instance.SendScore(2, this.BlackHoleCount, ScoreboardWriteMode.HighScoreDesc);
+        }
     }
 }
