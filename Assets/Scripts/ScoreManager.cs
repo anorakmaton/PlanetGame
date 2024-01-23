@@ -56,7 +56,7 @@ public class ScoreManager : MonoBehaviour
         //ブラックホールランキング
         if (this.BlackHoleCount > 0)
         {
-            UnityroomApiClient.Instance.SendScore(2, this.BlackHoleCount, ScoreboardWriteMode.HighScoreDesc);
+            UnityroomApiClient.Instance.SendScore(3, this.BlackHoleCount, ScoreboardWriteMode.HighScoreDesc);
         }
     }
 }
