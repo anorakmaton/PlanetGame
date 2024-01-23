@@ -4,6 +4,7 @@ using Mono.Cecil.Cil;
 using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
+using unityroom.Api;
 
 public class GameManager : MonoBehaviour
 {
@@ -21,8 +22,8 @@ public class GameManager : MonoBehaviour
     public GameObject TitleButton;
     public GameObject RetryButton;
     public float playAreaWidth = 6f;
-    public float playAreaHeight = 5.5f;
-    //クリック可能な座標範囲
+    public float playAreaHeight = 5.5f; //クリック可能な座標範囲
+    public bool isDebugMode = false; //デバッグモードかどうか
     
     public static GameManager instance; // インスタンスの定義
     void Awake()
@@ -68,7 +69,6 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
-        
         //持っている円を落とす
         CircleManager.instance.DropCircleWhenGameOver();
         //isGameOverをtrueにする
@@ -81,20 +81,17 @@ public class GameManager : MonoBehaviour
         soundManager.StopBgm();
         //サウンドを再生
         soundManager.PlaySe(GameOverSE);
-        soundManager.PlayBgm(GameOverBGM);
-        
-        //2秒後にランキングを表示
-        Invoke("ShowRanking", 2.0f);
-        
+        soundManager.PlaySe(GameOverBGM);
+        //DropLineを非表示
+        CircleManager.instance.DropLine.SetActive(false);
+        //2秒後にリトライボタンを表示
+        Invoke("ShowButton", 2.0f);
     }
 
-    private void ShowRanking()
+    private void ShowButton()
     {
-        //Titleに戻るボタンを表示
-        //TitleButton.SetActive(true);
         //Retryボタンを表示
         RetryButton.SetActive(true);
-        naichilab.RankingLoader.Instance.SendScoreAndShowRanking (ScoreManager.instance.score, ScoreManager.instance.BlackHoleCount);
     }
 
     public void OnToggledSound()

@@ -13,7 +13,8 @@ public class CircleManager : MonoBehaviour
     [SerializeField]
     AudioClip DropSE;
     public GameObject DeadLine;
-    private int nextCircleSize = 1;
+    public GameObject DropLine;
+    public int nextCircleSize = 1;
     //prefab格納する配列
     public GameObject[] circlePrefabArray;
     private CircleController circle;
@@ -22,6 +23,12 @@ public class CircleManager : MonoBehaviour
     public static CircleManager instance; // インスタンスの定義
     private int EnableCircleLayer_num = 7;
     private Vector3 mousePosition;
+    private float left;
+    private float right;
+    private float top;
+    private float scale = 0.5f;
+    private readonly float offset = 0.01f;
+
     void Awake()
     {
         // シングルトンの呪文
@@ -43,12 +50,28 @@ public class CircleManager : MonoBehaviour
         //落とす円を生成
         circle = CircleController.Init(nextCircleSize, new Vector3(0, 4.5f, 0), false, false);
         CreateCircle();
+        left = GameManager.instance.playAreaWidth / -2;
+        right = GameManager.instance.playAreaWidth / 2;
+        top = GameManager.instance.playAreaHeight;
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        // マウスの位置を取得
+        Vector3 mousePosition = Input.mousePosition;
+        // z軸修正
+        mousePosition.z = 10f;
+        // ワールド座標に変換
+        Vector3 worldPosition = Camera.main.ScreenToWorldPoint(mousePosition);
+        // デバッグモードの場合は制限なし
+        if (!GameManager.instance.isDebugMode)
+        {
+            // 座標をプレイエリア内に制限
+            worldPosition.x = Mathf.Clamp(worldPosition.x, left + (scale / 2) + offset, right - (scale / 2) - offset);
+            worldPosition.y = Mathf.Clamp(worldPosition.y, top, top);
+        }
+        DropLine.transform.position = worldPosition;
     }
 
     private void CreateCircle()
@@ -72,6 +95,8 @@ public class CircleManager : MonoBehaviour
         
         // 子オブジェクトにする
         //circle.transform.parent = transform;
+        // DropLineを表示する
+        DropLine.SetActive(true);
     }
 
     // 合体するときの処理
@@ -107,6 +132,16 @@ public class CircleManager : MonoBehaviour
                 ScoreManager.instance.BlackHoleCount++;
             }
         }
+        else 
+        {
+            //サウンドを再生
+            soundManager.PlaySe(MergeSE);
+            circle1.GetComponent<CircleController>().DeleteCircle();
+            circle2.GetComponent<CircleController>().DeleteCircle();
+            //スコアを加算する
+            ScoreManager.instance.AddScore(size);
+        }
+        
         
     }   
 
@@ -116,6 +151,7 @@ public class CircleManager : MonoBehaviour
         {
             return;
         }
+        scale = Nextcircle.scale;
         //SEを再生
         soundManager.PlaySe(DropSE);
         //DisableDeadLine();
@@ -123,6 +159,8 @@ public class CircleManager : MonoBehaviour
         Invoke("CreateCircle", 1f);
         // レイヤーを変更
         StartCoroutine(ChangeLayer(circle_obj));
+        // DropLineを非表示にする
+        DropLine.SetActive(false);
     }
 
     public void OnClickArea()
